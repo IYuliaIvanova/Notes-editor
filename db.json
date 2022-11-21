@@ -1,16 +1,22 @@
 {
   "notes": [
     {
-      "id": 1655978305874,
-      "text": "Need to buy #apple",
-      "isCompleted": false,
-      "tagsTextTask": "apple"
-    },
-    {
       "id": 1655978353021,
       "text": "Make an #apple pie",
       "isCompleted": false,
       "tagsTextTask": "apple"
+    },
+    {
+      "id": 1669021666896,
+      "text": "#hi",
+      "isCompleted": false,
+      "tagsTextTask": "hi"
+    },
+    {
+      "id": 1655978305874,
+      "text": "Need to buy #apple in #shop",
+      "isCompleted": false,
+      "tagsTextTask": "apple shop"
     }
   ],
   "tags": [
@@ -29,6 +35,10 @@
     {
       "id": 1655985696579,
       "textTags": "fructies"
+    },
+    {
+      "id": 1669021664724,
+      "textTags": "hi"
     }
   ]
 }

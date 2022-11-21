@@ -12,6 +12,10 @@ export interface INotesIdentifier {
     id: number;
 }
 
+export interface INotesTag {
+    tagsTextTask: string;
+}
+
 export interface IAxiosResponse {
     id: number;
     completed: boolean;

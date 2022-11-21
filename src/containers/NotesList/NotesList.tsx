@@ -73,11 +73,11 @@ export const NotesList = () => {
 
     const handleAddTask = () => {
         if(tagInput.length !== 0){
-            tagInput.forEach(({id, textTags}) => {
-                dispatchedAddTag({ id: id, textTags: textTags});
+            tagInput.forEach(({ id, textTags }) => {
+                dispatchedAddTag({ id: id, textTags: textTags });
                 dispatchedAddNotes({ id: (new Date()).getTime(), text: notesText, isCompleted: false, tagsTextTask: textTags });
                 postNotes({ id: (new Date()).getTime(), text: notesText, isCompleted: false, tagsTextTask: textTags })
-                postTags({ id: id, textTags: textTags});
+                postTags({ id: id, textTags: textTags });
             })
         } else {
             dispatchedAddNotes({ id: (new Date()).getTime(), text: notesText, isCompleted: false, tagsTextTask: '' });

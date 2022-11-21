@@ -21,8 +21,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "dev": "concurrently \"npm run api\" \"npm start\"",
-    "start": "react-scripts start",
+    "start": "concurrently \"npm run api\" \"npm run dev\"",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
