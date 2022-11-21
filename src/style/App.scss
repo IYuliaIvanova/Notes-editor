@@ -18,21 +18,20 @@
 .title {
     text-align: center;
     font-size: 4em;
-    color: rgb(69, 55, 83);
+    color: rgb(0, 0, 0);
 }
 
 .tag-title {
     display: block;
     text-align: center;
     font-size: 22px;
-    color: rgb(69, 55, 83);
+    color: rgb(0, 0, 0);
 }
 
 .notes-input-wrapper {
     position: relative;
     padding: 40px 20px;
     text-align: center;
-    background-color: rgb(92, 66, 144);
     margin-bottom: 5px;
 
     .notes-input {
@@ -41,13 +40,18 @@
         outline: none;
 
         padding: 10px 10px 10px 60px;
-        border: none;
-        background: rgba(146, 145, 145, 0.203);
-        color: white;
+        border: 2px solid rgb(39, 38, 38);
+        color: rgb(0, 0, 0);
         font-size: 24px;
 
+        transition: all .5s linear;
+
         &::placeholder{
-            color: rgb(149, 149, 149);
+            color: rgb(53, 53, 53);
+        }
+
+        &:focus {
+            box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.15);
         }
     }
 
@@ -58,7 +62,7 @@
         top: 50%;
         left: 30px;
         transform: translateY(-50%);
-        color: white; 
+        color: rgb(0, 0, 0); 
     }
 }
 
@@ -143,7 +147,7 @@
 
     .fa-check {
         transition: all .3s ease;
-        color: rgb(69, 55, 83);
+        color: rgb(0, 0, 0); 
 
         &:hover {
             color: rgba(61, 86, 31, 0.495);
@@ -153,7 +157,7 @@
     .fa-edit {
         margin-right: 10px;
         transition: all .3s ease;
-        color: rgb(69, 55, 83);
+        color: rgb(0, 0, 0); 
 
         &:hover {
             color: rgba(61, 86, 31, 0.495);
@@ -162,7 +166,7 @@
 
     .fa-trash {
         transition: all .3s ease;
-        color: rgb(69, 55, 83);
+        color: rgb(0, 0, 0); 
 
         &:hover {
             color: rgba(100, 31, 31, 0.749);
