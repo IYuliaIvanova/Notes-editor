@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { delNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
+import { deleteNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
 import { postTags } from "../../../api/fetchRequest/fetchTags";
 import { ITag } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
@@ -65,7 +65,7 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, com
         }
         
         updateNotes(id, editText, tagsTextInput.join(' '));
-        delNotes(id)
+        deleteNotes(id)
         postNotes({id: id, text: editText, isCompleted: false, tagsTextTask: tagsTextInput.join(' ')})
 
         setIsEditing(false)
@@ -73,7 +73,7 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, com
 
     const handleRemoveNotes = (e: React.FormEvent<HTMLElement>) => {
         removeNotes(id);
-        delNotes(id)
+        deleteNotes(id)
     }
     
     return (
