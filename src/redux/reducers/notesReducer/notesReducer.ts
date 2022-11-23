@@ -1,4 +1,4 @@
-import { INotes } from "../../../mock-data/notes";
+import { INotes } from "../../../interfaces/interfaces";
 import { ADD_NOTES, COMPLETE_NOTES, UPDATE_NOTES, REMOVE_NOTES, GET_NOTES_STARTED, GET_NOTES_SUCCESS, GET_NOTES_FAILURE } from "../../actions/actions";
 import { IError, INotesIdentifier, TNotesActionTypes } from "../../actions/notesActionCreators/actionCreator";
 

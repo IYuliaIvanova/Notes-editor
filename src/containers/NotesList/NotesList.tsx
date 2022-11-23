@@ -8,7 +8,7 @@ import { Loader } from "../../components/common-components/Loader/Loader";
 import { NotesInput } from "../../components/notes-page-components/NotesInput/NotesInput";
 import { NotesItemsList } from "../../components/notes-page-components/NotesItemsList/NotesItemsList";
 import { TagsItemsList } from "../../components/notes-page-components/TagsItemsList/TagsItemsList";
-import { ITag, INotes } from "../../mock-data/notes";
+import { ITag, INotes } from "../../interfaces/interfaces";
 import { changeFilter } from "../../redux/actions/filtersActionCreators/actionCreator";
 import { addTag, getTagsAction, removeTag } from "../../redux/actions/tagsActionCreators/actionCreators";
 import { addNotes, completeNotes, updateNotes, removeNotes, getNotes, TNotesActionTypes } from "../../redux/actions/notesActionCreators/actionCreator";

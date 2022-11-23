@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { delNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
 import { postTags } from "../../../api/fetchRequest/fetchTags";
-import { ITag } from "../../../mock-data/notes";
+import { ITag } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
 import { tagsSelector } from "../../../redux/selectors/tagsSelectors/tagsSelectors";
 import { getTags } from "../../../utils/tagsUtils";

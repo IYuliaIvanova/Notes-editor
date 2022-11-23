@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ITag } from "../../mock-data/notes";
+import { ITag } from "../../interfaces/interfaces";
 import { FETCH_BASE, FETCH_POST_TAGS } from "../fetch-constants";
 
 export const postTags = (data: ITag) => 

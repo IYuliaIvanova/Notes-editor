@@ -1,24 +1,15 @@
-import { ITag } from "../mock-data/notes";
+import { ITag } from "../interfaces/interfaces";
 
 export const getTags = (value: string): ITag[] => {
-  const tags = value.split(' ').filter((item) => {
-      if(item.includes('#')){
-        return item;
-      }
-    }).map((tag) => {
-      if(tag.includes('#')){
-        const allTags = tag.split('#').splice(1);
+  const tags: ITag[] = [];
 
-        if(allTags.includes('')){
-          return allTags.filter(tag => tag !== '');
-        } else {
-          return allTags;
-        } 
-      }
-    }).join(',').split(',').filter(tag => tag !== '')
-    .map((item): ITag => {
-      return {id: (new Date()).getTime(), textTags: item}
-    });
-
-    return tags
+  value.split(' ').forEach(word => {
+    if(word.includes('#') && word.length > 1) {
+      word.split("#").splice(1).forEach((item) => {
+        return tags.push({ id: (new Date()).getTime(), textTags:  item })
+      })
+    }
+  })
+  
+  return tags
 }

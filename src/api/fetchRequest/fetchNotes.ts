@@ -1,5 +1,5 @@
 import axios from "axios";
-import { INotes } from "../../mock-data/notes";
+import { INotes } from "../../interfaces/interfaces";
 import { FETCH_BASE, FETCH_POST_NOTES } from "../fetch-constants";
 
 export const postNotes = (data: INotes) => 

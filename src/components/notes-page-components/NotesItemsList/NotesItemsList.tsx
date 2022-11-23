@@ -1,5 +1,5 @@
 import React from "react";
-import { INotes } from "../../../mock-data/notes";
+import { INotes } from "../../../interfaces/interfaces";
 import { NotesItem } from "../NotesItem/NotesItem";
 
 interface INotesItemsList {

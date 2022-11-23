@@ -1,4 +1,4 @@
-import { ITag } from "../../../mock-data/notes";
+import { ITag } from "../../../interfaces/interfaces";
 import { ADD_TAG, GET_TAGS_FAILURE, GET_TAGS_STARTED, GET_TAGS_SUCCESS, REMOVE_TAG } from "../../actions/actions";
 import { IError, ITagIdentifier, TTagsActionTypes } from "../../actions/tagsActionCreators/actionCreators";
 

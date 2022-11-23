@@ -1,7 +1,7 @@
 import { ADD_NOTES, REMOVE_NOTES, COMPLETE_NOTES, UPDATE_NOTES, GET_NOTES_SUCCESS, GET_NOTES_STARTED, GET_NOTES_FAILURE } from "../actions";
 import axios from "axios";
 import { ActionCreator, Dispatch } from "redux";
-import { INotes } from "../../../mock-data/notes";
+import { INotes } from "../../../interfaces/interfaces";
 
 export interface IError {
     code: number;

@@ -1,5 +1,5 @@
 import React from "react";
-import { ITag } from "../../../mock-data/notes";
+import { ITag } from "../../../interfaces/interfaces";
 import { TagsItem } from "../TagsItem/TagsItem";
 
 interface ITagsItemsList {
