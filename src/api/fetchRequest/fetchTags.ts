@@ -7,7 +7,7 @@ export const postTags = (data: ITag) => {
     return fetchInstance.post("tags", data)
 } 
 
-export const delTags = (id: number) => {
+export const deleteTags = (id: number) => {
     const fetchInstance = axios.create({ baseURL: `${FETCH_BASE}`})
     return fetchInstance.delete(`tags/${id}`)
 } 

@@ -1,6 +1,5 @@
 import { ADD_NOTES, REMOVE_NOTES, COMPLETE_NOTES, UPDATE_NOTES, GET_NOTES_SUCCESS, GET_NOTES_STARTED, GET_NOTES_FAILURE } from "../actions";
-import axios from "axios";
-import { ActionCreator, Dispatch } from "redux";
+import { ActionCreator } from "redux";
 import { INotes } from "../../../interfaces/interfaces";
 
 export interface IError {
@@ -111,37 +110,19 @@ export const completeNotes = (id: number): TNotesActionTypes => {
     }
 }
 
-export const getNotes = () => {
-    return (dispatch: Dispatch<TNotesActionTypes>) => {
-        dispatch(getNotesStarted());
-
-        axios
-            .get<IAxiosResponse[]>(`http://localhost:3001/notes`)
-            .then(res => {
-                const mappedResponse = res.data.map(item => ({ ...item, isCompleted: item.completed, text: item.text, textTag: item.tag }));
-                setTimeout(() => {
-                    dispatch(getNotesSuccess(mappedResponse));
-                }, 3000);
-            })
-            .catch(err => {
-                dispatch(getNotesFailure(err));
-            });
-    };
-};
-
-const getNotesSuccess: ActionCreator<TNotesActionTypes> = (notes: INotes[]) => ({
+export const getNotesSuccess: ActionCreator<TNotesActionTypes> = (notes: INotes[]) => ({
     type: GET_NOTES_SUCCESS,
     payload: [
         ...notes
     ]
 });
 
-const getNotesStarted: ActionCreator<TNotesActionTypes> = () => ({
+export const getNotesStarted: ActionCreator<TNotesActionTypes> = () => ({
     type: GET_NOTES_STARTED,
     payload: {}
 });
 
-const getNotesFailure: ActionCreator<TNotesActionTypes> = (error: IError) => ({
+export const getNotesFailure: ActionCreator<TNotesActionTypes> = (error: IError) => ({
     type: GET_NOTES_FAILURE,
     payload: {
         error

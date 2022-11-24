@@ -4,7 +4,7 @@ import { deleteNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
 import { postTags } from "../../../api/fetchRequest/fetchTags";
 import { ITag } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
-import { tagsSelector } from "../../../redux/selectors/tagsSelectors/tagsSelectors";
+import { RootState } from "../../../redux/reducers";
 import { getTags } from "../../../utils/tagsUtils";
 
 interface INotesItem {
@@ -21,13 +21,10 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, com
     const [editText, setEditText] = useState(text)
     const [tagInput, setTagInput] = useState<ITag[]>([]);
 
-    const { tags } = useSelector(tagsSelector);
+    const { tags } = useSelector((state: RootState) => state.tags);
 
     const dispatch = useDispatch();
-    const dispatchedAddTag = useCallback(
-        (tag: ITag) => dispatch(addTag({ id: tag.id, textTags: tag.textTags })),
-        [dispatch]
-    );
+    const dispatchedAddTag = (tag: ITag) => dispatch(addTag({ id: tag.id, textTags: tag.textTags }))
 
     const handleEditInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditText(e.target.value)

@@ -2,21 +2,19 @@ import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AnyAction } from "redux";
 import { ThunkDispatch } from "redux-thunk";
-import { postNotes } from "../../api/fetchRequest/fetchNotes";
+import { getNotes, postNotes } from "../../api/fetchRequest/fetchNotes";
 import { postTags } from "../../api/fetchRequest/fetchTags";
-import { Loader } from "../../components/common-components/Loader/Loader";
-import { NotesInput } from "../../components/notes-page-components/NotesInput/NotesInput";
-import { NotesItemsList } from "../../components/notes-page-components/NotesItemsList/NotesItemsList";
-import { TagsItemsList } from "../../components/notes-page-components/TagsItemsList/TagsItemsList";
+import { Loader } from "../../components/common/Loader/Loader";
+import { NotesInput } from "../../components/notesPage/NotesInput/NotesInput";
+import { NotesItemsList } from "../../components/notesPage/NotesItemsList/NotesItemsList";
+import { TagsItemsList } from "../../components/notesPage/TagsItemsList/TagsItemsList";
 import { ITag, INotes } from "../../interfaces/interfaces";
 import { changeFilter } from "../../redux/actions/filtersActionCreators/actionCreator";
 import { addTag, getTagsAction, removeTag } from "../../redux/actions/tagsActionCreators/actionCreators";
-import { addNotes, completeNotes, updateNotes, removeNotes, getNotes, TNotesActionTypes } from "../../redux/actions/notesActionCreators/actionCreator";
-import { filtersSelector } from "../../redux/selectors/filterSelectors/filtersSelectors";
-import { tagsSelector } from "../../redux/selectors/tagsSelectors/tagsSelectors";
-import { notesSelector } from "../../redux/selectors/notesSelectors/notesSelectors";
+import { addNotes, completeNotes, updateNotes, removeNotes, TNotesActionTypes } from "../../redux/actions/notesActionCreators/actionCreator";
 import { getTags } from "../../utils/tagsUtils";
-import { Footer } from "../Footer/Footer";
+import { Footer } from "../../Layout/Footer/Footer";
+import { RootState } from "../../redux/reducers";
 
 type AppDispatch = ThunkDispatch<TNotesActionTypes, any, AnyAction>; 
 
@@ -24,40 +22,19 @@ export const NotesList = () => {
     const [notesText, setNotesText] = useState('');
     const [tagInput, setTagInput] = useState<ITag[]>([]);
 
-    const { notes, isLoading } = useSelector(notesSelector);
-    const filter = useSelector(filtersSelector);
-    const { tags } = useSelector(tagsSelector);
+    const { notes, isLoading } = useSelector((state: RootState) => state.notes);
+    const filter = useSelector((state: RootState) => state.filter);
+    const { tags } = useSelector((state: RootState) => state.tags);
 
     const dispatch: AppDispatch = useDispatch();
 
-    const dispatchedAddNotes = useCallback(
-        (task: INotes) => dispatch(addNotes({ id: task.id, text: task.text, isCompleted: task.isCompleted, tagsTextTask: task.tagsTextTask })),
-        [dispatch]
-    );
-    const dispatchedAddTag = useCallback(
-        (tag: ITag) => dispatch(addTag({ id: tag.id, textTags: tag.textTags })),
-        [dispatch]
-    );
-    const dispatchedUpdateNotes = useCallback(
-        (id: number, text: string, tags: string) => dispatch(updateNotes(id, text, tags)),
-        [dispatch]
-    );
-    const dispatchedRemoveTag = useCallback(
-        (id: number) => dispatch(removeTag(id)),
-        [dispatch]
-    );
-    const dispatchedRemoveNotes = useCallback(
-        (id: number) => dispatch(removeNotes(id)),
-        [dispatch]
-    );
-    const dispatchedFilterChange = useCallback(
-        (filter: string) => dispatch(changeFilter(filter)),
-        [dispatch]
-    );
-    const dispatchedCompleteNotes = useCallback(
-        (id: number) => dispatch(completeNotes(id)),
-        [dispatch]
-    );
+    const dispatchedAddNotes = (task: INotes) => dispatch(addNotes({ id: task.id, text: task.text, isCompleted: task.isCompleted, tagsTextTask: task.tagsTextTask }))
+    const dispatchedAddTag = (tag: ITag) => dispatch(addTag({ id: tag.id, textTags: tag.textTags }))
+    const dispatchedUpdateNotes = (id: number, text: string, tags: string) => dispatch(updateNotes(id, text, tags))
+    const dispatchedRemoveTag = (id: number) => dispatch(removeTag(id))
+    const dispatchedRemoveNotes = (id: number) => dispatch(removeNotes(id))
+    const dispatchedFilterChange = (filter: string) => dispatch(changeFilter(filter))
+    const dispatchedCompleteNotes = (id: number) => dispatch(completeNotes(id))
 
     useEffect(() => {
         dispatch(getNotes());
@@ -96,7 +73,7 @@ export const NotesList = () => {
         }
     }, [filter, notes]);
 
-    const filteredTasks = useMemo(() => filterTasks(notes), [notes, filterTasks]);
+    const filteredTasks = filterTasks(notes)
 
     return (
         <div className="notes-wrapper">

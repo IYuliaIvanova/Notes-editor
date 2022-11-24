@@ -1,5 +1,5 @@
 import React from "react";
-import { delTags } from "../../../api/fetchRequest/fetchTags";
+import { deleteTags } from "../../../api/fetchRequest/fetchTags";
 
 interface ITagsItem {
     idTag: number;
@@ -11,7 +11,7 @@ interface ITagsItem {
 export const TagsItem = ({ idTag, textTag, removeTag, filterChange }: ITagsItem) =>{
     const handleRemoveTags = (e: React.FormEvent<HTMLElement>) => {
         removeTag(idTag);
-        delTags(idTag)
+        deleteTags(idTag)
     }
     
     return (
