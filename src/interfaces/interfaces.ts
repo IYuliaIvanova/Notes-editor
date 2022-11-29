@@ -5,12 +5,17 @@ export interface IFilterBtn {
 
 export interface ITag {
     id: number;
-    textTags: string;
+    text: string;
+}
+
+export interface ITagNotes {
+    id: number;
+    tag: ITag;
 }
 
 export interface INotes {
     id: number;
     text: string;
     isCompleted: boolean;
-    tagsTextTask: string;
+    tags: ITagNotes[];
 }

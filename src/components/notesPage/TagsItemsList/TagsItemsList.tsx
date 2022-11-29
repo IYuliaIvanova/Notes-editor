@@ -11,11 +11,11 @@ interface ITagsItemsList {
 export const TagsItemsList = ({ tags, removeTag, filterChange }: ITagsItemsList) => {
     return (
         <div className="tags-list">
-            {tags.map(({ id, textTags }) => (
+            {tags.map(({ id, text }) => (
                <TagsItem 
                     key={id} 
                     idTag={id} 
-                    textTag={textTags} 
+                    textTag={text} 
                     removeTag={removeTag} 
                     filterChange={filterChange}
                 />

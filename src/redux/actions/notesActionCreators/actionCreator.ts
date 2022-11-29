@@ -1,6 +1,6 @@
 import { ADD_NOTES, REMOVE_NOTES, COMPLETE_NOTES, UPDATE_NOTES, GET_NOTES_SUCCESS, GET_NOTES_STARTED, GET_NOTES_FAILURE } from "../actions";
 import { ActionCreator } from "redux";
-import { INotes } from "../../../interfaces/interfaces";
+import { INotes, ITagNotes } from "../../../interfaces/interfaces";
 
 export interface IError {
     code: number;
@@ -11,15 +11,11 @@ export interface INotesIdentifier {
     id: number;
 }
 
-export interface INotesTag {
-    tagsTextTask: string;
-}
-
 export interface IAxiosResponse {
     id: number;
     completed: boolean;
     text: string;
-    tag: string
+    tags: ITagNotes[];
 }
 
 interface IAddNotesAction {
@@ -32,7 +28,7 @@ interface IUpdateNotesAction {
     payload: {
         id: number,
         text: string,
-        tagsText: string,
+        tags: ITagNotes[],
     };
 }
 
@@ -81,13 +77,13 @@ export const addNotes: ActionCreator<TNotesActionTypes> = (notes: INotes) => {
     }
 }
 
-export const updateNotes = (id: number, text: string, tagsText: string): TNotesActionTypes => {
+export const updateNotes = (id: number, text: string, tags: ITagNotes[]): TNotesActionTypes => {
     return {
         type: UPDATE_NOTES,
         payload: {
             id,
             text,
-            tagsText,
+            tags,
         }
     }
 }

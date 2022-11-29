@@ -2,16 +2,16 @@ import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
 import { postTags } from "../../../api/fetchRequest/fetchTags";
-import { ITag } from "../../../interfaces/interfaces";
+import { ITag, ITagNotes } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
 import { RootState } from "../../../redux/reducers";
-import { getTags } from "../../../utils/tagsUtils";
+import { addNewTags, getTagNotes, splitTags } from "../../../utils/tagsUtils";
 
 interface INotesItem {
     text: string;
     isCompleted: boolean;
     id: number;
-    updateNotes: (id: number, text: string, tags: string) => void;
+    updateNotes: (id: number, text: string, tags: ITagNotes[]) => void;
     removeNotes: (id: number) => void;
     completeNotes: (id: number) => void;
 }
@@ -19,51 +19,38 @@ interface INotesItem {
 export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, completeNotes }: INotesItem) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(text)
-    const [tagInput, setTagInput] = useState<ITag[]>([]);
+    const [tagInput, setTagInput] = useState<string[]>([]);
 
     const { tags } = useSelector((state: RootState) => state.tags);
 
     const dispatch = useDispatch();
-    const dispatchedAddTag = (tag: ITag) => dispatch(addTag({ id: tag.id, textTags: tag.textTags }))
+    const dispatchedAddTag = (tag: ITag) => dispatch(addTag({ id: tag.id, text: tag.text }))
 
     const handleEditInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setEditText(e.target.value)
-        setTagInput(getTags(e.target.value))
+        setTagInput(splitTags(e.target.value))
     }
 
     const handleUpdateNotes = (e: React.FormEvent<HTMLElement>) => {
         e.preventDefault()
 
-        const tagsTextInput = tagInput.map(({id, textTags},i) => {
-            return textTags
-        });
-    
-        const tagSet = new Set<string>([]);
-        const unicTagsInput = [...tagsTextInput];
+        const newTags = addNewTags(tags, tagInput);
 
-        (tags as ITag[]).forEach((item) => {
-            for (let i = 0; i < unicTagsInput.length; i++) {
-                const tag = unicTagsInput[i];
-
-                if(item.textTags !== tag){
-                    tagSet.add(tag)
-                } else {
-                    unicTagsInput.splice(i,1)
-                    tagSet.delete(tag) 
-                }
-            }
+        newTags.forEach(({ id, text }) => {
+            dispatchedAddTag({ id: id, text: text });
+            postTags({ id: id, text: text });
         })
 
-        if(tagSet.size !== 0){
-            for (let i = 0; i < Array.from(tagSet).length; i++) {
-                dispatchedAddTag({ id: (new Date()).getTime(), textTags: Array.from(tagSet)[i]})
-                postTags({ id: (new Date()).getTime(), textTags: Array.from(tagSet)[i]})
-            }
-        }
-        
-        updateNotes(id, editText, tagsTextInput.join(' '));
+        let updateTags: ITag[] = [...(tags as ITag[])];
+        newTags.forEach((item) => {
+            updateTags.push(item)
+        }) 
+            
+        const tagsNotes = getTagNotes(updateTags, tagInput)
+
+        updateNotes(id, editText, tagsNotes);
         deleteNotes(id)
-        postNotes({id: id, text: editText, isCompleted: false, tagsTextTask: tagsTextInput.join(' ')})
+        postNotes({ id: id, text: editText, isCompleted: false, tags: tagsNotes })
 
         setIsEditing(false)
     }

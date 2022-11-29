@@ -1,10 +1,10 @@
 import React from "react";
-import { INotes } from "../../../interfaces/interfaces";
+import { INotes, ITagNotes } from "../../../interfaces/interfaces";
 import { NotesItem } from "../NotesItem/NotesItem";
 
 interface INotesItemsList {
     tasksList: INotes[];
-    updateNotes: (id: number, text: string, tags: string) => void;
+    updateNotes: (id: number, text: string, tags: ITagNotes[]) => void;
     removeNotes: (id: number) => void;
     completeNotes: (id: number) => void
 }

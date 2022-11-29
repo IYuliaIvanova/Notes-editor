@@ -1,66 +1,114 @@
 {
   "notes": [
     {
-      "id": 1669021666896,
-      "text": "#hi",
-      "isCompleted": false,
-      "tagsTextTask": "hi"
-    },
-    {
       "id": 1655978305874,
       "text": "Need to buy #apple in #shop",
       "isCompleted": false,
-      "tagsTextTask": "apple shop"
+      "tags": [
+        {
+          "id": 2,
+          "tag": {
+            "id": 1669652839264,
+            "text": "apple"
+          }
+        },
+        {
+          "id": 3,
+          "tag": {
+            "id": 1669652839265,
+            "text": "shop"
+          }
+        }
+      ]
     },
     {
-      "id": 1669196526967,
-      "text": "ehelhlsd fdsfsbAH Bhdsbahbd hsbhdbshabh dbh#asdsad#qqq #hello",
+      "id": 1669723194169,
+      "text": "#qq #tt",
       "isCompleted": false,
-      "tagsTextTask": "asdsad"
+      "tags": [
+        {
+          "id": 1669723194168,
+          "tag": {
+            "id": 1669656794379,
+            "text": "qq"
+          }
+        }
+      ]
     },
     {
-      "id": 1669196526972,
-      "text": "ehelhlsd fdsfsbAH Bhdsbahbd hsbhdbshabh dbh#asdsad#qqq #hello",
+      "id": 1669723906112,
+      "text": "#qq#yy",
       "isCompleted": false,
-      "tagsTextTask": "qqq"
+      "tags": [
+        {
+          "id": 1669723906110,
+          "tag": {
+            "id": 1669656794379,
+            "text": "qq"
+          }
+        }
+      ]
     },
     {
-      "id": 1669198483350,
-      "text": "moved interfaces",
+      "id": 1669021666896,
+      "text": "#hi#tt#yy#tt",
       "isCompleted": false,
-      "tagsTextTask": ""
-    },
-    {
-      "id": 1669279122908,
-      "text": "asf",
-      "isCompleted": false,
-      "tagsTextTask": ""
+      "tags": [
+        {
+          "id": 1669754800679,
+          "tag": {
+            "id": 1669652839262,
+            "text": "hi"
+          }
+        },
+        {
+          "id": 1669754800680,
+          "tag": {
+            "id": 1669723194165,
+            "text": "tt"
+          }
+        },
+        {
+          "id": 1669754800682,
+          "tag": {
+            "id": 1669723194165,
+            "text": "tt"
+          }
+        },
+        {
+          "id": 1669754800681,
+          "tag": {
+            "id": 1669754238529,
+            "text": "yy"
+          }
+        }
+      ]
     }
   ],
   "tags": [
     {
-      "id": 1655913549230,
-      "textTags": "shop"
+      "id": 1669652839262,
+      "text": "hi"
     },
     {
-      "id": 1655939518484,
-      "textTags": "white"
+      "id": 1669652839264,
+      "text": "apple"
     },
     {
-      "id": 1655978303272,
-      "textTags": "apple"
+      "id": 1669652839265,
+      "text": "shop"
     },
     {
-      "id": 1655985696579,
-      "textTags": "fructies"
+      "id": 1669656794379,
+      "text": "qq"
     },
     {
-      "id": 1669021664724,
-      "textTags": "hi"
+      "id": 1669723194165,
+      "text": "tt"
     },
     {
-      "id": 1669198521102,
-      "textTags": "qqq"
+      "id": 1669754238529,
+      "text": "yy"
     }
   ]
 }

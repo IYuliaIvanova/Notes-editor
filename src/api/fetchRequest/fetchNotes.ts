@@ -18,12 +18,12 @@ export const getNotes = () => {
     return (dispatch: Dispatch<TNotesActionTypes>) => {
         dispatch(getNotesStarted());
 
-        const fetchInstance = axios.create({ baseURL: `${FETCH_BASE}`})
+        const fetchInstance = axios.create({ baseURL: `${FETCH_BASE}` })
 
         fetchInstance
             .get<IAxiosResponse[]>('notes')
-            .then(res => {
-                const mappedResponse = res.data.map(item => ({ ...item, isCompleted: item.completed, text: item.text, textTag: item.tag }));
+            .then(({ data }) => {
+                const mappedResponse = data.map(item => ({ ...item, isCompleted: item.completed, text: item.text, tags: item.tags }));
                 setTimeout(() => {
                     dispatch(getNotesSuccess(mappedResponse));
                 }, 3000);

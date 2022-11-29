@@ -23,7 +23,7 @@ export const notesReducer = (state = initialState, { payload, type }: TNotesActi
                         id: payload.id,
                         text: payload.text,
                         isCompleted: payload.isCompleted,
-                        tagsTextTask: payload.tagsTextTask,
+                        tags: payload.tags,
                     }
                 ]
             };
@@ -32,7 +32,7 @@ export const notesReducer = (state = initialState, { payload, type }: TNotesActi
                 ...state, notes: state.notes.map(task => {
                     if(task.id === (payload as INotesIdentifier).id){
                         return {
-                            ...task, text: payload.text, tagsTextTask: payload.tagsText
+                            ...task, text: payload.text, tags: payload.tags
                         }
                     } 
                     return {

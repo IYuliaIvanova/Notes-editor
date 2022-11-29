@@ -21,7 +21,7 @@ export const tagsReducer = (state = initialState, { type, payload }: TTagsAction
                 ...state, tags: [
                     ...state.tags, {
                         id: payload.id,
-                        textTags: payload.textTags
+                        text: payload.text
                     }
                 ]
             };
