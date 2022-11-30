@@ -19,3 +19,13 @@ export interface INotes {
     isCompleted: boolean;
     tags: ITagNotes[];
 }
+
+export interface ICountTag {
+    id: number;
+    tag: string;
+    count: number;
+}
+
+export interface IObject {
+    [key: string]: number;
+}

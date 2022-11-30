@@ -20,7 +20,7 @@ type AppDispatch = ThunkDispatch<TNotesActionTypes, any, AnyAction>;
 
 export const NotesList = () => {
     const [notesText, setNotesText] = useState('');
-    const [tagsText, setTagsText] = useState<string[]>([]); 
+    const [tagsText, setTagsText] = useState<string[]>([]);
 
     const { notes, isLoading } = useSelector((state: RootState) => state.notes);
     const filter = useSelector((state: RootState) => state.filter);
@@ -61,7 +61,7 @@ export const NotesList = () => {
             newTags.forEach((item) => {
                 updateTags.push(item)
             }) 
-            
+
             const tagsNotes = getTagNotes(updateTags, tagsText)
 
             dispatchedAddNotes({ id: (new Date()).getTime(), text: notesText, isCompleted: false, tags: tagsNotes });
@@ -79,7 +79,7 @@ export const NotesList = () => {
 
     const filterTasks = useCallback((tasks: INotes[]) => {
         if(filter !== 'all'){
-            return tasks.filter(item => item.text.includes(filter))
+            return tasks.filter(item => item.text.includes(`#${filter}`))
         } else {
             return tasks
         }
@@ -92,7 +92,15 @@ export const NotesList = () => {
             <NotesInput value={notesText} onChange={handleInputChange} addNotes={handleAddTask}/>
             <span className="tag-title">Click on tag to filter</span>
             <TagsItemsList tags={tags} removeTag={dispatchedRemoveTag} filterChange={dispatchedFilterChange}/>
-            {isLoading ? <Loader /> : <NotesItemsList tasksList={filteredTasks} updateNotes={dispatchedUpdateNotes} removeNotes={dispatchedRemoveNotes} completeNotes={dispatchedCompleteNotes}/>}
+            {isLoading ? 
+                <Loader /> : 
+                <NotesItemsList 
+                    tasksList={filteredTasks} 
+                    updateNotes={dispatchedUpdateNotes} 
+                    removeNotes={dispatchedRemoveNotes} 
+                    completeNotes={dispatchedCompleteNotes}
+                />
+            }
             {isTasksExist && <Footer amount={(notes as INotes[]).length} activeFilter={filter} filterChange={dispatchedFilterChange}/>}
         </div>
     )

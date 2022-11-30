@@ -2,10 +2,10 @@ import React, { useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
 import { postTags } from "../../../api/fetchRequest/fetchTags";
-import { ITag, ITagNotes } from "../../../interfaces/interfaces";
+import { ICountTag, ITag, ITagNotes } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
 import { RootState } from "../../../redux/reducers";
-import { addNewTags, getTagNotes, splitTags } from "../../../utils/tagsUtils";
+import { addNewTags, countAllTagsNotes, getTagNotes, splitTags } from "../../../utils/tagsUtils";
 
 interface INotesItem {
     text: string;
@@ -21,6 +21,7 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, com
     const [editText, setEditText] = useState(text)
     const [tagInput, setTagInput] = useState<string[]>([]);
 
+    const { notes } = useSelector((state: RootState) => state.notes);
     const { tags } = useSelector((state: RootState) => state.tags);
 
     const dispatch = useDispatch();
