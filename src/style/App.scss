@@ -5,6 +5,10 @@
     font-family: 'Caveat';
 }
 
+body {
+    padding: 10px;
+}
+
 @mixin animate($animation,$duration,$method,$times){
     animation: $animation $duration $method $times;
 }
@@ -132,6 +136,7 @@
     }
 
     .edit-input{
+        width: 100%;
         font-size: 24px;
         border-radius: 10px;
         outline: none;

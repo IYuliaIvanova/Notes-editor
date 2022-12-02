@@ -80,3 +80,8 @@ export const countAllTagsNotes = (notes: INotes[], tags: ITag[]): ICountTag[] =>
 
   return countTags
 }
+
+export const diff = (a: string[], b: string[]) => {
+  const diff = a.filter(val => b.indexOf(val) === -1)
+  return diff.concat(b.filter((val)=> a.indexOf(val) === -1))
+}

@@ -98,6 +98,7 @@ export const NotesList = () => {
                     tasksList={filteredTasks} 
                     updateNotes={dispatchedUpdateNotes} 
                     removeNotes={dispatchedRemoveNotes} 
+                    removeTag={dispatchedRemoveTag}
                     completeNotes={dispatchedCompleteNotes}
                 />
             }

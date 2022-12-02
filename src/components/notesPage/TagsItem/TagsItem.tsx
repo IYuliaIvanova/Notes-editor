@@ -10,8 +10,8 @@ interface ITagsItem {
 
 export const TagsItem = ({ idTag, textTag, removeTag, filterChange }: ITagsItem) =>{
     const handleRemoveTags = (e: React.FormEvent<HTMLElement>) => {
+        deleteTags(idTag);
         removeTag(idTag);
-        deleteTags(idTag)
     }
     
     return (

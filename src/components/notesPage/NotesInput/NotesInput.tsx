@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { KeyboardEvent } from 'react';
 
 interface INotesInput {
     onChange: (arg: React.ChangeEvent<HTMLInputElement>) => void,
@@ -7,6 +7,11 @@ interface INotesInput {
 }
 
 export const NotesInput = ({ value, onChange, addNotes }: INotesInput) => {
+    const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter'){
+            addNotes()
+        }
+    }
     return (
         <div className="notes-input-wrapper">
             <input
@@ -14,6 +19,7 @@ export const NotesInput = ({ value, onChange, addNotes }: INotesInput) => {
                 placeholder="Click plus to add notes"
                 onChange={onChange}
                 value={value}
+                onKeyPress={handleKeyDown}
             />
             <i className="fas fa-plus" onClick={addNotes}/>
         </div>
