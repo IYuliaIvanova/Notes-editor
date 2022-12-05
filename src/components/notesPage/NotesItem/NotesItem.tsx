@@ -2,7 +2,7 @@ import React, { useState, KeyboardEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteNotes, postNotes } from "../../../api/fetchRequest/fetchNotes";
 import { deleteTags, postTags } from "../../../api/fetchRequest/fetchTags";
-import { ICountTag, ITag, ITagNotes } from "../../../interfaces/interfaces";
+import { INotes, ITag, ITagNotes } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
 import { RootState } from "../../../redux/reducers";
 import { addNewTags, countAllTagsNotes, diff, getTagNotes, splitTags } from "../../../utils/tagsUtils";
@@ -17,7 +17,7 @@ interface INotesItem {
     completeNotes: (id: number) => void;
 }
 
-export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes,removeTag, completeNotes }: INotesItem) => {
+export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, removeTag, completeNotes }: INotesItem) => {
     const [isEditing, setIsEditing] = useState(false);
     const [editText, setEditText] = useState(text)
     const [tagInput, setTagInput] = useState<string[]>([]);
@@ -72,7 +72,7 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes,remo
         updateNotes(id, editText, tagsNotes);
         deleteNotes(id)
         postNotes({ id: id, text: editText, isCompleted: false, tags: tagsNotes })
-        console.log(id)
+
         setIsEditing(false)
     }
 
@@ -83,6 +83,24 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes,remo
     }
 
     const handleRemoveNotes = (e: React.FormEvent<HTMLElement>) => {
+        const countTagsNotes = countAllTagsNotes(notes, tags)
+        const inputTags: ITag[] = [];
+
+        (notes as INotes[]).forEach(item => {
+            if(id === item.id){
+                item.tags.forEach(tag => inputTags.push(tag.tag))
+            }
+        });
+
+        countTagsNotes.forEach((item) => {
+            inputTags.forEach((tag) => {
+                if(tag.text === item.tag && item.count === 1){
+                    removeTag(item.id);
+                    deleteTags(item.id)
+                } 
+            });
+        });
+
         deleteNotes(id);
         removeNotes(id);
     }

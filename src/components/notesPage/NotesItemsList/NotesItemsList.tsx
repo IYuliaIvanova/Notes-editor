@@ -1,5 +1,5 @@
 import React from "react";
-import { ICountTag, INotes, ITagNotes } from "../../../interfaces/interfaces";
+import { INotes, ITagNotes } from "../../../interfaces/interfaces";
 import { NotesItem } from "../NotesItem/NotesItem";
 
 interface INotesItemsList {

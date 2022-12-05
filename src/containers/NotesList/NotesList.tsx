@@ -16,7 +16,7 @@ import { addNewTags, getTagNotes, splitTags } from "../../utils/tagsUtils";
 import { Footer } from "../../Layout/Footer/Footer";
 import { RootState } from "../../redux/reducers";
 
-type AppDispatch = ThunkDispatch<TNotesActionTypes, any, AnyAction>; 
+type AppDispatch = ThunkDispatch<TNotesActionTypes, string, AnyAction>; 
 
 export const NotesList = () => {
     const [notesText, setNotesText] = useState('');
