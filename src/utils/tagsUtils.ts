@@ -28,8 +28,9 @@ export const addNewTags = (tags: ITag[], tagsInput: string[]): ITag[] => {
     Array.from(filterTags).forEach((value, id) => {
       newTags.push({ id: (new Date()).getTime() + id, text: value })
     })
+
   } else {
-    tagsInput.forEach((value, id) => {
+    Array.from(filterTags).forEach((value, id) => {
       newTags.push({ id: (new Date()).getTime() + id, text: value })
     })
   }
@@ -79,10 +80,10 @@ export const countAllTagsNotes = (notes: INotes[], tags: ITag[]): ICountTag[] =>
   }
 
   return countTags
-}
+} 
 
-export const diff = (a: string[], b: string[]) => {
-  const diff = a.filter(val => b.indexOf(val) === -1)
+export const diffArray = (arrOne: string[], arrTwo: string[]) => {
+  const diff = arrOne.filter(val => arrTwo.indexOf(val) === -1)
   
-  return diff.concat(b.filter((val)=> a.indexOf(val) === -1))
+  return diff.concat(arrTwo.filter((val)=> arrOne.indexOf(val) === -1))
 }

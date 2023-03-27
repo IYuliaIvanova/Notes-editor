@@ -39,7 +39,7 @@ export const NotesList = () => {
     useEffect(() => {
         dispatch(getNotes());
         dispatch(getTags());
-      }, []);
+    }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target as HTMLInputElement;

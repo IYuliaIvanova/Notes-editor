@@ -5,7 +5,7 @@ import { deleteTags, postTags } from "../../../api/fetchRequest/fetchTags";
 import { INotes, ITag, ITagNotes } from "../../../interfaces/interfaces";
 import { addTag } from "../../../redux/actions/tagsActionCreators/actionCreators";
 import { RootState } from "../../../redux/reducers";
-import { addNewTags, countAllTagsNotes, diff, getTagNotes, splitTags } from "../../../utils/tagsUtils";
+import { addNewTags, countAllTagsNotes, diffArray, getTagNotes, splitTags } from "../../../utils/tagsUtils";
 
 interface INotesItem {
     text: string;
@@ -44,7 +44,7 @@ export const NotesItem = ({ text, isCompleted, id, updateNotes, removeNotes, rem
 
     const handleUpdateNotes = () => {
         const countTagsNotes = countAllTagsNotes(notes, tags)
-        const diffTags = diff(tagInput, tagNotes)
+        const diffTags = diffArray(tagInput, tagNotes)
 
         countTagsNotes.forEach((item) => {
             diffTags.forEach((tag) => {
